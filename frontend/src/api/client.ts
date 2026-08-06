@@ -89,3 +89,50 @@ export async function apiDelete<T>(
 ): Promise<T> {
   return request<T>("DELETE", path, { token });
 }
+
+async function multipartRequest<T>(
+  method: "POST" | "PUT",
+  path: string,
+  formData: FormData,
+  token?: string | null
+): Promise<T> {
+  const url = `${BASE_URL}${path}`;
+  const headers: Record<string, string> = {};
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+
+  const response = await fetch(url, {
+    method,
+    headers,
+    body: formData,
+  });
+
+  if (response.status === 204) {
+    return undefined as T;
+  }
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new ApiError(response.status, data.detail || response.statusText);
+  }
+
+  return data as T;
+}
+
+export async function apiPostMultipart<T>(
+  path: string,
+  formData: FormData,
+  token?: string | null
+): Promise<T> {
+  return multipartRequest<T>("POST", path, formData, token);
+}
+
+export async function apiPutMultipart<T>(
+  path: string,
+  formData: FormData,
+  token?: string | null
+): Promise<T> {
+  return multipartRequest<T>("PUT", path, formData, token);
+}
