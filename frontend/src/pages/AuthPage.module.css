@@ -1,0 +1,136 @@
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+  background: linear-gradient(160deg, var(--color-gradient_dark_start) 0%, var(--color-gradient_dark_end) 50%, var(--color-burgundy_surface) 100%);
+  padding: var(--space-4);
+}
+
+.card {
+  background: var(--color-bg_card);
+  border-radius: var(--radius-lg);
+  padding: 48px 40px;
+  max-width: 440px;
+  width: 90vw;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--color-border);
+}
+
+.appName {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--color-accent);
+  text-align: center;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-1);
+}
+
+.subtitle {
+  color: var(--color-fg_muted);
+  text-align: center;
+  margin-bottom: var(--space-5);
+  font-size: 14px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-fg_muted);
+}
+
+.input {
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg_elevated);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-fg);
+  font-size: 16px;
+  font-family: var(--font-body);
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-fg_muted);
+}
+
+.inputError {
+  border-color: var(--color-error);
+}
+
+.errorMessage {
+  background: #3A1B1B;
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  color: #EF9A9A;
+  font-size: 14px;
+}
+
+.submitButton {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 16px;
+  font-family: var(--font-body);
+  letter-spacing: 0.02em;
+  min-height: 44px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+.submitButton:hover {
+  background: var(--color-accent_hover);
+  transform: scale(1.02);
+}
+
+.submitButton:active {
+  background: var(--color-accent_active);
+  transform: scale(0.98);
+}
+
+.submitButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.switchLink {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--color-fg_muted);
+  font-size: 14px;
+}
+
+.switchLink a {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.switchLink a:hover {
+  color: var(--color-accent_hover);
+}
