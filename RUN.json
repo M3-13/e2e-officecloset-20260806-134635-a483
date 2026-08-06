@@ -7,7 +7,15 @@
       "stack": "python",
       "kind": "server",
       "install": [
-        ["${python}", "-m", "pip", "install", "-q", "-r", "requirements.txt"]
+        [
+          "${python}",
+          "-m",
+          "pip",
+          "install",
+          "-q",
+          "-r",
+          "requirements.txt"
+        ]
       ],
       "start": [
         "${python}",
@@ -21,7 +29,9 @@
       "port_env": "PORT",
       "health": {
         "path": "/api/health",
-        "expect_status": [200]
+        "expect_status": [
+          200
+        ]
       },
       "env": {
         "JWT_SECRET": {
@@ -36,6 +46,46 @@
         },
         "FRONTEND_ORIGIN": {
           "dev": "http://localhost:5173"
+        }
+      }
+    },
+    {
+      "name": "frontend",
+      "dir": "frontend",
+      "stack": "web-vite",
+      "kind": "server",
+      "install": [
+        [
+          "npm",
+          "ci"
+        ]
+      ],
+      "build": [
+        [
+          "npm",
+          "run",
+          "build"
+        ]
+      ],
+      "start": [
+        "npm",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "${PORT}"
+      ],
+      "port": 5173,
+      "port_env": "PORT",
+      "health": {
+        "path": "/",
+        "expect_status": [
+          200
+        ]
+      },
+      "env": {
+        "VITE_API_URL": {
+          "dev": "http://localhost:8000"
         }
       }
     }
